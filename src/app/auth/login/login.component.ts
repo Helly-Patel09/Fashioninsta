@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   errors: any = [];
   notify: string;
-
+  errorMessage:string;
   constructor(private auth: AuthService, private router: Router, private fb: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -45,12 +45,19 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.errors = [];
-    this.auth.login(this.loginForm.value)
+    if(this.loginForm.value.email === 'admin@gmail.com' && this.loginForm.value.password === 'admin'){
+      this.auth.login(this.loginForm.value)
       .subscribe((token) => {
         this.router.navigate(['/'], { queryParams: { loggedin: 'success' } });
        },
         (errorResponse) => {
           this.errors.push(errorResponse.error.error);
         });
+    }
+    else
+    {
+      this.errorMessage="Invalid Credentials.";
+    }
+
   }
 }

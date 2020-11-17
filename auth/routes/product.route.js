@@ -6,7 +6,7 @@ module.exports = function (app) {
 
     // Find all products
     app.get('/api/products', products.findAll);
-
+    
     // Find a single Product by Id
     app.get('/api/productbyid/:id', products.findProductById);
 
