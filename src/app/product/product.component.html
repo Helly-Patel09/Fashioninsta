@@ -1,26 +1,19 @@
-<a class="btn btn-secondary" routerLink="/product-add">Add New Product</a>
+<div class="container">
+<a class="btn btn-secondary" routerLink="/product-add" style="margin-top: 20px;">Add New Product</a>
 <br /><br />
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>S.No.</th>
-            <th>Product Code</th>
-            <th>Product Name</th>
-            <th>Product Price</th>
-            <th>Product Image</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
     <tbody>
         <tr *ngFor="let product of products;let rowIndex=index">
-            <td>{{rowIndex+1}}</td>
-            <td>{{product.code}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
             <td><img src="{{product.image}}" /></td>
+            <td>Code : {{product.code}}</td>
+            <td>Name : {{product.name}}</td>
+            <td>Price : ${{product.price}}</td>
+            
             <td>
                 <a class="btn btn-secondary" [routerLink]="['/product-detail', product._id]">View Details</a>
             </td>
+            <hr>
         </tr>
     </tbody>
 </table>
+</div>
